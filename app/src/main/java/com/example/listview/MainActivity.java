@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Good2 good2 = new Good2("xxx");
                 if (initData.size()>0){
                     good2 = initData.poll();
+                    initData.offer(good2);
                    leftList.add(good2);
                     leftAdapter.notifyDataSetChanged();
                 }
@@ -80,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData(){
-        rightAdapter = new RightAdapter(MainActivity.this,R.layout.right_item, rightList,rightList,leftAdapter,leftList);
-        lv2.setAdapter(rightAdapter);
+
         leftAdapter = new LeftAdapter(MainActivity.this,R.layout.left_item, leftList,initList,rightAdapter,rightList);
         lv1.setAdapter(leftAdapter);
+        rightAdapter = new RightAdapter(MainActivity.this,R.layout.right_item, rightList,rightList,leftAdapter,leftList);
+        lv2.setAdapter(rightAdapter);
         Toast.makeText(MainActivity.this,"数据初始化成功",Toast.LENGTH_SHORT).show();
 
     }

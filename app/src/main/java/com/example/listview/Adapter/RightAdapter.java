@@ -13,10 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.listview.R;
 import com.example.listview.pojo.Good;
 import com.example.listview.pojo.Good2;
-
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Iterator;
 import java.util.List;
 
 public class RightAdapter extends ArrayAdapter<Good> {
@@ -49,6 +46,7 @@ public class RightAdapter extends ArrayAdapter<Good> {
             public void onClick(View view) {
                 String title = good.getTitle();
                 List<Good> removeList = new ArrayList<>();
+                List<Good2> removeGood2 = new ArrayList<>();
 
                 for (int i = 0; i < goodList.size() ; i++) {
 
@@ -57,8 +55,17 @@ public class RightAdapter extends ArrayAdapter<Good> {
                     }
                 }
 
+                for (int i = 0; i < leftData.size() ; i++) {
+                    if (leftData.get(i).getTitle() == title){
+                        removeGood2.add(leftData.get(i));
+                    }
+                }
+
+                leftData.removeAll(removeGood2);
                 goodList.removeAll(removeList);
                 notifyDataSetChanged();
+                leftAdapter.notifyDataSetChanged();
+
 
 
 
