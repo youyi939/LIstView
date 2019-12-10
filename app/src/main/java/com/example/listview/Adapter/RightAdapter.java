@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.listview.R;
 import com.example.listview.pojo.Good;
+import com.example.listview.pojo.Good2;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -21,10 +22,16 @@ import java.util.List;
 public class RightAdapter extends ArrayAdapter<Good> {
     private int resourceId;
     private List<Good> goodList;
-    public RightAdapter(@NonNull Context context, int resource, List objects,List<Good> mgoodList) {
+    private LeftAdapter leftAdapter;
+    private List<Good2> leftData;
+
+
+    public RightAdapter(@NonNull Context context, int resource, List objects, List<Good> mgoodList, LeftAdapter mleftAdapter, List<Good2>mleftList) {
         super(context, resource,objects);
         resourceId = resource;
         goodList = mgoodList;
+        leftAdapter = mleftAdapter;
+        leftData = mleftList;
     }
 
     @NonNull
@@ -48,12 +55,13 @@ public class RightAdapter extends ArrayAdapter<Good> {
                     if (goodList.get(i).getTitle() == title){
                         removeList.add(goodList.get(i));
                     }
-
                 }
 
                 goodList.removeAll(removeList);
-
                 notifyDataSetChanged();
+
+
+
             }
         });
 

@@ -37,25 +37,8 @@ public class LeftAdapter extends ArrayAdapter<Good2> {
         View view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
 
         final TextView textView = view.findViewById(R.id.txt1);
-        final Button add = view.findViewById(R.id.btn_1);
         final Good2 good = getItem(position);
         textView.setText(good.getTitle());
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                for (int i = 0; i < rightList.size(); i++) {
-
-                    if (rightList.get(i).getTitle() == good.getTitle() ){
-                        goodList.add(rightList.get(i));
-                    }
-                }
-                rightAdapter.notifyDataSetChanged();
-            }
-        });
-
 
 
         return view;
